@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voice AI Demo</title>
+</head>
+<body>
+<h2>Voice AI Platform</h2>
+<button id="start">Start Recording</button>
+<script>
+let ws = new WebSocket("ws://localhost:8000/ws/voice");
+let mediaRecorder;
+
+document.getElementById("start").onclick = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  mediaRecorder = new MediaRecorder(stream);
+  mediaRecorder.start(1000);
+
+  mediaRecorder.ondataavailable = e => {
+    if (e.data.size > 0 && ws.readyState === 1) {
+      e.data.arrayBuffer().then(buf => ws.send(buf));
+    }
+  };
+
+  ws.onmessage = e => {
+    if (typeof e.data === "string") {
+      console.log(e.data);
+    } else {
+      const audio = new Audio(URL.createObjectURL(e.data));
+      audio.play();
+    }
+  };
+};
+</script>
+</body>
+</html>
