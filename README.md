@@ -18,33 +18,6 @@ This project demonstrates how modern voice assistants are built using **CPU-frie
 
 ---
 
-# System Architecture
-
-Browser Microphone
-│
-▼
-WebSocket Audio Stream
-│
-▼
-Silero VAD (Speech Detection)
-│
-▼
-Faster-Whisper ASR (Speech → Text)
-│
-▼
-Groq LLM API
-│
-▼
-Piper TTS (Text → Speech)
-│
-▼
-Audio Response Stream
-│
-▼
-Browser Playback
-
----
-
 # Tech Stack
 
 ### Backend
@@ -68,26 +41,6 @@ Browser Playback
 - Vanilla JavaScript
 
 ---
-
-# Project Structure
-
-voice-ai-platform/
-
-backend/
-│
-├── main.py
-│
-├── api/
-│ └── websocket.py
-│
-├── core/
-│ ├── config.py
-│ └── llm_client.py
-│
-└── voice/
-├── asr.py
-├── vad.py
-└── tts.py
 
 frontend/
 └── index.html
