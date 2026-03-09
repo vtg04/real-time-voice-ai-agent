@@ -41,9 +41,3 @@ This project demonstrates how modern voice assistants are built using **CPU-frie
 - Vanilla JavaScript
 
 ---
-
-frontend/
-└── index.html
-
-requirements.txt
-README.md
